@@ -80,3 +80,12 @@ desktop.ini
 ._*
 # node
 node_modules
+
+
+/Assets/FMODStudioCache.asset
+
+/Assets/FMODStudioCache.asset.meta
+
+fmod.log
+
+fmod_editor.log
