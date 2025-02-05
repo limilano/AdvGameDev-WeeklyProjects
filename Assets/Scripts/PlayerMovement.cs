@@ -22,13 +22,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isBouncing = false;
 
     // audio
-    private EventInstance playerFootsteps;
-    private EventInstance playerWobble;
+    // private EventInstance playerFootsteps;
+    
 
     private void Start()
     {
-        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerWalking);
-        playerWobble = AudioManager.instance.CreateInstance(FMODEvents.instance.wobble);
+        // playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerWalking);
     }
 
     private void Update()
@@ -39,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
         CheckBounce();
         MovePlayerCamera();
-        UpdateSound();
+        // UpdateSound();
     }
 
     private void MovePlayer() 
@@ -104,20 +103,7 @@ public class PlayerMovement : MonoBehaviour
         //     playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
         // }
 
-        if(Physics.CheckSphere(FeetTransform.position, 0.1f, WobbleMask))
-        {
-                PLAYBACK_STATE playbackState;
-                playerWobble.getPlaybackState(out playbackState);
-                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
-                {
-                    playerWobble.start();
-                }
-        }
-            // otherwise, stop the footsteps event
-            else 
-            {
-                playerWobble.stop(STOP_MODE.ALLOWFADEOUT);
-            }
+        
     }
 
 
