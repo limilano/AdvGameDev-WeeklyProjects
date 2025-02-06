@@ -380,8 +380,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../FMOD Studio/agd-fmod-test/agd-fmod-test.fspro
-  sourceBankPath: ../../FMOD Studio/agd-fmod-test/Build
+  sourceProjectPath: ../../../FMOD Studio/agd-fmod-test/agd-fmod-test.fspro
+  sourceBankPath: ../../../FMOD Studio/agd-fmod-test/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

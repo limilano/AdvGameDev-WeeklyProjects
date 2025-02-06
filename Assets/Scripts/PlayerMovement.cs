@@ -1,6 +1,7 @@
 // https://www.youtube.com/watch?v=b1uoLBp2I1w
 using UnityEngine;
 using FMOD.Studio;
+using FMODUnity;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,12 +23,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isBouncing = false;
 
     // audio
-    // private EventInstance playerFootsteps;
+    private FMOD.Studio.EventInstance playerFootsteps;
     
 
     private void Start()
     {
-        // playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerWalking);
+        playerFootsteps = FMODUnity.RuntimeManager.CreateInstance(FMODEvents.instance.playerWalking);
     }
 
     private void Update()
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
         CheckBounce();
         MovePlayerCamera();
-        // UpdateSound();
+        UpdateSound();
     }
 
     private void MovePlayer() 
@@ -87,21 +88,22 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateSound()
     {
         // start footsteps event if the player has an x velocity and is on the ground
-        // if (PlayerBody.linearVelocity != Vector3.zero && Physics.CheckSphere(FeetTransform.position, 0.1f, FloorMask))
-        // {
-        //     // get the playback state
-        //     PLAYBACK_STATE playbackState;
-        //     playerFootsteps.getPlaybackState(out playbackState);
-        //     if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
-        //     {
-        //         playerFootsteps.start();
-        //     }
-        // }
-        // // otherwise, stop the footsteps event
-        // else 
-        // {
-        //     playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
-        // }
+        if (PlayerBody.linearVelocity != Vector3.zero && Physics.CheckSphere(FeetTransform.position, 0.1f, FloorMask))
+        {
+            // get the playback state
+            PLAYBACK_STATE playbackState;
+            playerFootsteps.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerFootsteps, this.transform);
+                playerFootsteps.start();
+            }
+        }
+        // otherwise, stop the footsteps event
+        else 
+        {
+            playerFootsteps.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
 
         
     }

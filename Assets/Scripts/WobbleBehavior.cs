@@ -1,16 +1,14 @@
 using UnityEngine;
 using FMOD.Studio;
+using FMODUnity;
 public class WobbleBehavior : MonoBehaviour
 {
-    private EventInstance playerWobble;
+    private FMOD.Studio.EventInstance playerWobble;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        playerWobble = AudioManager.instance.CreateInstance(FMODEvents.instance.wobble);
-        playerWobble.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerWobble,  GetComponent<Transform>(), GetComponent<Rigidbody>());
-        
+        playerWobble = FMODUnity.RuntimeManager.CreateInstance(FMODEvents.instance.wobble);
     }
 
     // Update is called once per frame
@@ -29,13 +27,14 @@ public class WobbleBehavior : MonoBehaviour
             playerWobble.getPlaybackState(out playbackState);
             if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
             {
-                Debug.Log("wobble");
+                // Debug.Log("wobble");
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerWobble, this.transform);
                 playerWobble.start();
             }
         }
         else 
         {
-            playerWobble.stop(STOP_MODE.ALLOWFADEOUT);
+            playerWobble.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }
 }

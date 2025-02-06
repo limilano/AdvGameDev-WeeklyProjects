@@ -46,8 +46,8 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        CleanUp();
-    }
+    // private void OnDestroy()
+    // {
+    //     CleanUp();
+    // }
 }
