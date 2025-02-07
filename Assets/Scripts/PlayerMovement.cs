@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(Physics.CheckSphere(FeetTransform.position, 0.1f, FloorMask))
+            if(Physics.CheckSphere(FeetTransform.position, 0.2f, FloorMask) || Physics.CheckSphere(FeetTransform.position, 0.2f, WobbleMask))
             {
                 PlayerBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.jump, this.transform.position);

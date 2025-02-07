@@ -21,6 +21,10 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
+        if(worldPos == Vector3.positiveInfinity)
+        {
+            return;
+        }
         RuntimeManager.PlayOneShot(sound, worldPos);
     }
 
