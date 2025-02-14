@@ -24,6 +24,16 @@ public class PlayerMovement : MonoBehaviour
 
     // audio
     private FMOD.Studio.EventInstance playerFootsteps;
+
+    // private void OnEnable()
+    // {
+    //     Ticker.OnTickAction += Tick;
+    // }
+
+    // private void OnDisable()
+    // {
+    //     Ticker.OnTickAction -= Tick;
+    // }
     
 
     private void Start()
@@ -104,9 +114,12 @@ public class PlayerMovement : MonoBehaviour
         {
             playerFootsteps.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
-
-        
     }
+
+    // private void Tick()
+    // {
+    //     UpdateSound();
+    // }
 
 
 }

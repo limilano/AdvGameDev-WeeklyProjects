@@ -11,8 +11,20 @@ public class WobbleBehavior : MonoBehaviour
         playerWobble = FMODUnity.RuntimeManager.CreateInstance(FMODEvents.instance.wobble);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    
+
+    private void OnEnable()
+    {
+        Ticker.OnTickAction += Tick;
+    }
+
+    private void OnDisable()
+    {
+        Ticker.OnTickAction -= Tick;
+    }
+
+    private void Tick()
     {
         UpdateSound();
     }
