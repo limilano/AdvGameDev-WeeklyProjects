@@ -21,7 +21,7 @@ public class ScaleFromMicrophone : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float loudness = detector.GetLoudnessFromMicrophone() * loudnessSensitivity;
         if (loudness < threshold) loudness = 0;
